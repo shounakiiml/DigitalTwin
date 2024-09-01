@@ -11,7 +11,7 @@ from itertools import count  # for infinite for loop
 
 config_loaded = define_config()
 from Scripts.OPC_reading import opc_read
-from Scripts.Master_user_input_functions import master_ui_file, master_ui_clean, mc_overwrite_file
+from Scripts.Master_data_input_functions import master_ui_file, master_ui_clean, mc_overwrite_file
 from Scripts.colour_allocation import colour_allocation_engine, retrieve_state,log_creation
 # from Scripts.OPC_writing import OPC_write_back
 # from Scripts.OPC_reading import opc_read_in_by
@@ -154,7 +154,7 @@ try:
         # Creating a snapshot of the dashboard and saving it=========================================
         end_time = datetime.now()
         x = (end_time - start_time).seconds
-        while (x<=57):
+        while (x<=28):
             print(start_time, end_time, x)
             end_time = datetime.now()
             x = (end_time - start_time).seconds

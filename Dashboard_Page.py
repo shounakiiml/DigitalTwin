@@ -22,41 +22,24 @@ from main import define_config
 # """ Importing press list from the configuration file"""
 # with open("C:/Users/Shounak.Pal/PycharmProjects/pythonProject/config.yaml", 'r') as stream: config_loaded = yaml.safe_load(stream)
 config_loaded = define_config()
-press_list_north = config_loaded['North Trench Distribution']['North_Trench1'] + config_loaded['North Trench Distribution'][
+mc_list = config_loaded['Trench Distribution']['Trench1'] + config_loaded['Trench Distribution'][
     'North_Trench2'] + \
              config_loaded['North Trench Distribution']['North_Trench3'] + config_loaded['North Trench Distribution'][
                  'North_Trench4'] + \
              config_loaded['North Trench Distribution']['North_Trench5'] + config_loaded['North Trench Distribution'][
                  'North_Trench6']
-press_list_south = config_loaded['South Trench Distribution']['South_Trench1'] + config_loaded['South Trench Distribution'][
-    'South_Trench2'] + \
-             config_loaded['South Trench Distribution']['South_Trench3'] + config_loaded['South Trench Distribution'][
-                 'South_Trench4'] + \
-             config_loaded['South Trench Distribution']['South_Trench5'] + config_loaded['South Trench Distribution'][
-                 'South_Trench6']
 hetero_list = config_loaded['Heterogeneous press']
-press_south_adj=press_list_south.copy()
-press_north_adj=press_list_north.copy()
-press_south_adj2=press_list_south.copy()
-press_north_adj2=press_list_north.copy()
-for j in press_list_south:
-    press_south_adj2.remove(j)
-    press_south_adj2.append(j + '_L')
-    press_south_adj2.append(j + '_R')
-for j in press_list_north:
-    press_north_adj2.remove(j)
-    press_north_adj2.append(j + '_L')
-    press_north_adj2.append(j + '_R')
-for i in press_list_south:
+mc_adj=mc_list.copy()
+mc_adj2=mc_list.copy()
+for j in mc_list:
+    mc_adj2.remove(j)
+    mc_adj2.append(j + '_L')
+    mc_adj2.append(j + '_R')
+for i in mc_list:
     if i in hetero_list:
-        press_south_adj.remove(i)
-        press_south_adj.append(i+'_L')
-        press_south_adj.append(i + '_R')
-for i in press_list_north:
-    if i in hetero_list:
-        press_north_adj.remove(i)
-        press_north_adj.append(i+'_L')
-        press_north_adj.append(i + '_R')
+        mc_adj.remove(i)
+        mc_adj.append(i+'_L')
+        mc_adj.append(i + '_R')
 
 def datetime_picker():
     """ Defining Datetime Picker to Automatically fill datetime column in table1 and table3"""
@@ -80,25 +63,18 @@ app = dash.Dash(__name__, assets_url_path=config_loaded['host_folder'] + 'assets
 # Trench4 = [dbc.CardHeader(html.H5('TRENCH 4', className="text-center"))]
 # Trench5 = [dbc.CardHeader(html.H5('TRENCH 5', className="text-center"))]
 # Trench6 = [dbc.CardHeader(html.H5('TRENCH 6', className="text-center"))]
-North_Trench1 = [dbc.CardHeader(html.H5('NORTH TRENCH 1', className="text-center"))]
-North_Trench2 = [dbc.CardHeader(html.H5('NORTH TRENCH 2', className="text-center"))]
-North_Trench3 = [dbc.CardHeader(html.H5('NORTH TRENCH 3', className="text-center"))]
-North_Trench4 = [dbc.CardHeader(html.H5('NORTH TRENCH 4', className="text-center"))]
-North_Trench5 = [dbc.CardHeader(html.H5('NORTH TRENCH 5', className="text-center"))]
-North_Trench6 = [dbc.CardHeader(html.H5('NORTH TRENCH 6', className="text-center"))]
-
-South_Trench1 = [dbc.CardHeader(html.H5('SOUTH TRENCH 1', className="text-center"))]
-South_Trench2 = [dbc.CardHeader(html.H5('SOUTH TRENCH 2', className="text-center"))]
-South_Trench3 = [dbc.CardHeader(html.H5('SOUTH TRENCH 3', className="text-center"))]
-South_Trench4 = [dbc.CardHeader(html.H5('SOUTH TRENCH 4', className="text-center"))]
-South_Trench5 = [dbc.CardHeader(html.H5('SOUTH TRENCH 5', className="text-center"))]
-South_Trench6 = [dbc.CardHeader(html.H5('SOUTH TRENCH 6', className="text-center"))]
-app.title = "SID View"
+Trench1 = [dbc.CardHeader(html.H5('TRENCH 1', className="text-center"))]
+Trench2 = [dbc.CardHeader(html.H5('TRENCH 2', className="text-center"))]
+Trench3 = [dbc.CardHeader(html.H5('TRENCH 3', className="text-center"))]
+Trench4 = [dbc.CardHeader(html.H5('TRENCH 4', className="text-center"))]
+Trench5 = [dbc.CardHeader(html.H5('TRENCH 5', className="text-center"))]
+Trench6 = [dbc.CardHeader(html.H5('TRENCH 6', className="text-center"))]
+app.title = "Digital Twin View"
 """Defines the complete layout and individual tabs of the dashbord with colors and styles as described"""
 app.layout = html.Div([
     html.Div(
         html.H1(
-            children='CEAT PRESS IDLING DASHBOARD',
+            children='MACHINE IDLING DASHBOARD',
             style={'color': 'white',
                    'fontSize': 30, 'text-align': 'center',
                    'background': '#330099'})),
@@ -107,14 +83,12 @@ app.layout = html.Div([
     html.Div([
         dcc.Tabs(id="tabs-styled-with-inline", value='tab-1', children=[
             dcc.Tab(label='Summary View (North)', value='tab-1'),
-            dcc.Tab(label='Summary View (South)', value='tab-2'),
-            dcc.Tab(label='Associate Input', value='tab-3'),
-            dcc.Tab(label='Trench wise', value='tab-4'),
-            dcc.Tab(label='Bypass-Inline Status', value='tab-5'),
-            dcc.Tab(label='Single-Side Idling', value='tab-6'), ####22 Nov 23 change
-            dcc.Tab(label='Press Condition Log', value='tab-7'),
-            dcc.Tab(label='Inputs Analysis', value='tab-8'),
-
+            dcc.Tab(label='Associate Input', value='tab-2'),
+            dcc.Tab(label='Trench wise', value='tab-3'),
+            dcc.Tab(label='Bypass-Inline Status', value='tab-4'),
+            dcc.Tab(label='Single-Side Idling', value='tab-5'), ####22 Nov 23 change
+            dcc.Tab(label='Press Condition Log', value='tab-6'),
+            dcc.Tab(label='Inputs Analysis', value='tab-7'),
         ]),
         html.Div(id='tabs-content-inline')
     ], className="create_container3 eight columns"),
@@ -126,7 +100,7 @@ app.layout = html.Div([
 @app.callback(Output('tabs-content-inline', 'children'),
               Input("tabs-styled-with-inline", 'value'))
 def render_content(tab):
-    if tab == 'tab-3':
+    if tab == 'tab-2':
         print("got into Associate Input")
         return html.Div([
             dcc.Interval('graph-update', interval=30 * 1000),
@@ -363,13 +337,8 @@ def render_content(tab):
             dcc.Interval('graph_update1', interval=10 * 1000),
             html.Div(id='tab1_output')
         ])
-    if tab == 'tab-2':
-        return html.Div([
-            dcc.Interval('graph_update11', interval=10 * 1000),
-            html.Div(id='tab2_output')
-        ])
     # ==============================================================================================================
-    if tab == 'tab-4':
+    if tab == 'tab-3':
         return html.Div([
             html.H2(
                 children='Trench  view',
@@ -502,7 +471,7 @@ def render_content(tab):
 
         ])
     # =============================================================================================================
-    if tab == 'tab-5':
+    if tab == 'tab-4':
         print('entering Machine Status check')
         return html.Div([
             dcc.Interval('graph_update4', interval=10 * 1000),
@@ -579,7 +548,7 @@ def render_content(tab):
             dcc.Location(id='url2'),
         ])
     # ==============================================================================================================
-    if tab == 'tab-6':
+    if tab == 'tab-5':
         print('m')
         return html.Div([
             html.Div(id='output21'),
@@ -696,7 +665,7 @@ def render_content(tab):
         ])
 
     # ==============================================================================================================
-    if tab == 'tab-7':
+    if tab == 'tab-6':
         print('n')
         return html.Div([
             dcc.Interval('graph_update5', interval=30 * 1000),
@@ -750,7 +719,7 @@ def render_content(tab):
             html.Hr(),
         ])
     # ================================================================================================
-    if tab == 'tab-8':
+    if tab == 'tab-7':
         print('Associate Input Tab is selected')
         return html.Div([
             dcc.Interval('associate_input_table_update', interval=30 * 1000),
