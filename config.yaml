@@ -1,0 +1,50 @@
+Trench Distribution:
+  Trench1: ['MC10', 'MC9', 'MC8', 'MC7', 'MC6', 'MC5', 'MC4', 'MC3', 'MC2', 'MC1',
+  'MC11', 'MC12', 'MC13', 'MC14', 'MC15', 'MC16', 'MC17', 'MC18', 'MC19', 'MC20']
+  Trench2: ['MC30', 'MC29', 'MC28', 'MC27', 'MC26', 'MC25', 'MC24', 'MC23', 'MC22', 'MC21',
+  'MC31', 'MC32', 'MC33', 'MC34', 'MC35', 'MC36', 'MC37', 'MC38', 'MC39', 'MC40']
+  Trench3: ['MC50', 'MC49', 'MC48', 'MC47', 'MC46', 'MC45', 'MC44', 'MC43', 'MC42', 'MC41']
+  Trench4: ['MC65', 'MC64', 'MC63', 'MC62', 'MC61']
+  Trench5: ['MC75', 'MC74', 'MC73', 'MC72', 'MC71','MC70', 'MC69', 'MC68', 'MC67', 'MC66',
+                  'MC76', 'MC77', 'MC78', 'MC79', 'MC80','MC81', 'MC82', 'MC83', 'MC84', 'MC85']
+  Trench6: []
+Trench Switch (OPC write back):
+  Trench1: 1
+  Trench2: 1
+  Trench3: 1
+  Trench4: 1
+  Trench5: 1
+  Trench6: 1
+Heterogeneous MC: ['MC76', 'MC77', 'MC78', 'MC79', 'MC80','MC81', 'MC82', 'MC83', 'MC84', 'MC85','MC75', 'MC74', 'MC73', 'MC72', 'MC71','MC70', 'MC69', 'MC68', 'MC67', 'MC66', 'MC65', 'MC64', 'MC63', 'MC62', 'MC61']
+
+Associate Input:
+  Acceptable Time for Idling: 5
+  Wait Time (Normal): 15
+  Wait Time (Critical): 5
+  Warm Up period: 20
+  Acceptable Warm Up period: 60
+  Threshold temperature: 151
+OPC Tags:
+  #url: "opc.tcp://10.65.116.24:49320"
+  #url1: "opc.tcp://10.65.116.26:49320"
+  Input Tags:
+    MC_TEMPERATURE: 'TRENCH.SAMP75.TEMPERATURE'
+    MC_TEMPERATURE_RHS: 'TRENCH.SAMP75.TEMPERATURE_RHS'
+    MC_TEMPERATURE_LHS: 'TRENCH.SAMP75.TEMPERATURE_LHS'
+    PROD_TYPE_RHS: 'TRENCH.SAMP.TYRE_SIZE_RHS'
+    PROD_TYPE_LHS: 'TRENCH.SAMP.TYRE_SIZE_LHS'
+    STEP_NUMBER_RHS: 'TRENCH.SAMP.STEP_NUMBER_RHS'
+    STEP_NUMBER_LHS: 'TRENCH.SAMP.STEP_NUMBER_LHS'
+  Output Tags:
+    MACHINE_IDLING_ALARM: 'TRENCH.SAMP75.MACHINE_IDLING_ALARM'
+    MACHINE_IDLING_INTERLOCK: 'TRENCH.SAMP75.MACHINE_IDLING_INTERLOCK'
+    MACHINE_IDLING_ALARM_RHS: 'TRENCH.SAMP75.MACHINE_IDLING_ALARM_RHS'
+    MACHINE_IDLING_ALARM_LHS: 'TRENCH.SAMP75.MACHINE_IDLING_ALARM_LHS'
+    MACHINE_IDLING_INTERLOCK_RHS: 'TRENCH.SAMP75.MACHINE_IDLING_INTERLOCK_RHS'
+    MACHINE_IDLING_INTERLOCK_LHS: 'TRENCH.SAMP75.MACHINE_IDLING_INTERLOCK_LHS'
+
+Master_UI_inputs_and_mc_overwrite:
+  Recreate_file: 0
+program_speed: 30
+retry_count: 100
+host_folder: 'E:/pythonProject/FloorMachineDashboard/'
