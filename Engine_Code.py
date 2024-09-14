@@ -73,10 +73,6 @@ try:
         data_master.to_pickle(config_loaded['host_folder']+'Data/Master Datasets/data_master.pkl')
         mc_list_adj = data_master['MC_no'].to_list()
         print('data master created')
-        ###extra addition for bypassing#####Shounak####
-        # master_UI = pd.read_pickle(r'Data/Master Datasets/data_master.pkl')
-        # master_UI = check_addcol(master_UI)
-        # master_UI.to_pickle(r'Data/Master Datasets/master_UI_data.pkl')
 
         # Master User Input Recreation=========================================================
         if master_ui_overwrite_recreate_switch == 1:
@@ -131,7 +127,7 @@ try:
                                   data_master['STEP_NUMBER_LHS'].isna()))] \
                 .to_pickle(config_loaded['host_folder'] + 'Data/Secondary Data/idling_inv_greater0.pkl')
             data_master[(data_master['MC_TEMPERATURE'] < thres_temp)] \
-                .to_pickle(config_loaded['host_folder'] + 'Data/Secondary Data/steamoff.pkl')
+                .to_pickle(config_loaded['host_folder'] + 'Data/Secondary Data/machineoff.pkl')
         except Exception as e:
             print("issue in creating idle and steam off",e)
 
@@ -169,7 +165,7 @@ try:
         #opc_read_in_by()
         # OPC_write_back(data_master, MC_overwrite, trench_switch, trench_distribution,
         #                acceptable_warm_up_period, thres_temp)
-        data_master.to_pickle(config_loaded['host_folder']+'Data/Secondary Data/steam_alarms_colour.pkl')
+        data_master.to_pickle(config_loaded['host_folder']+'Data/Secondary Data/mc_alarms_colour.pkl')
         # Saving the Time and Colour columns for the next run ========================================
         Time_list = data_master['Time'].tolist()
         Color_list = data_master['Color'].tolist()

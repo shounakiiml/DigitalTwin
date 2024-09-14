@@ -15,7 +15,8 @@ Trench Switch (OPC write back):
   Trench4: 1
   Trench5: 1
   Trench6: 1
-Heterogeneous MC: ['MC76', 'MC77', 'MC78', 'MC79', 'MC80','MC81', 'MC82', 'MC83', 'MC84', 'MC85','MC75', 'MC74', 'MC73', 'MC72', 'MC71','MC70', 'MC69', 'MC68', 'MC67', 'MC66', 'MC65', 'MC64', 'MC63', 'MC62', 'MC61']
+Heterogeneous MC: ['MC76', 'MC77', 'MC78', 'MC79', 'MC80','MC81', 'MC82', 'MC83', 'MC84', 'MC85','MC75', 'MC74',
+                   'MC73', 'MC72', 'MC71','MC70', 'MC69', 'MC68', 'MC67', 'MC66', 'MC65', 'MC64', 'MC63', 'MC62', 'MC61']
 
 Associate Input:
   Acceptable Time for Idling: 5
